@@ -14,10 +14,11 @@ const getDocumentsFromFile = (cb) => {
 };
 
 module.exports = class Document {
-  constructor(filename, hash, timestamp) {
+  constructor(filename, hash, timestamp, author) {
     this.filename = filename;
     this.hash = hash;
     this.timestamp = timestamp;
+    this.author = author;
   }
 
   save(callback) {
