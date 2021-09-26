@@ -17,10 +17,11 @@ app.use(express.json({ limit: '50mb' }));
 app.use(router);
 
 const serialKey = fs.readFileSync(path.join(__dirname, 'serial.key')).toString();
+const serverUrl = fs.readFileSync(path.join(__dirname, 'serverurl.txt')).toString();
 
 // const socket = io('http://localhost:3000/', { auth: { token: serialKey } });
 
-const socket = io('https://orcaintern.herokuapp.com', { auth: { token: serialKey } });
+const socket = io(serverUrl, { auth: { token: serialKey } });
 
 socket.on('connect', () => {
     console.log('connected!');
@@ -145,6 +146,18 @@ router.get('/documents', (req, res, next) => {
 router.get('/logs', (req, res, next) => {
     res.setHeader('Content-Type', 'application/json');
     Log.fetchAll((logs) => res.send(JSON.stringify(logs)));
+});
+
+router.post('/change-server-url', (req, res, next) => {
+    res.setHeader('Content-Type', 'application/json');
+    const newUrl = req.body['url'];
+    if (newUrl) {
+        fs.writeFileSync(path.join(__dirname, 'serverurl.txt'), newUrl);
+        serverUrl = newUrl;
+        res.send(JSON.stringify({ message: 'changed successfully to: ' + serverUrl }));
+    } else {
+        res.send(JSON.stringify({ message: 'no url found' }))
+    }
 });
 
 router.post('/deleteAllLogs', (req, res, next) => {
