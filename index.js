@@ -154,7 +154,8 @@ router.post('/change-server-url', (req, res, next) => {
     if (newUrl) {
         fs.writeFileSync(path.join(__dirname, 'serverurl.txt'), newUrl);
         serverUrl = newUrl;
-        res.send(JSON.stringify({ message: 'changed successfully to: ' + serverUrl }));
+        res.send(JSON.stringify({ message: 'changed successfully to: ' + serverUrl + '! Restarting now...'}));
+        process.exit()
     } else {
         res.send(JSON.stringify({ message: 'no url found' }))
     }
