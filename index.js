@@ -17,7 +17,7 @@ app.use(express.json({ limit: '50mb' }));
 app.use(router);
 
 const serialKey = fs.readFileSync(path.join(__dirname, 'serial.key')).toString();
-const serverUrl = fs.readFileSync(path.join(__dirname, 'serverurl.txt')).toString();
+let serverUrl = fs.readFileSync(path.join(__dirname, 'serverurl.txt')).toString();
 
 // const socket = io('http://localhost:3000/', { auth: { token: serialKey } });
 
