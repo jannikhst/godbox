@@ -21,7 +21,7 @@ let serverUrl = fs.readFileSync(path.join(__dirname, 'serverurl.txt')).toString(
 
 // const socket = io('http://localhost:3000/', { auth: { token: serialKey } });
 
-const socket = io(serverUrl, { auth: { token: serialKey } });
+const socket = io(serverUrl, { auth: { token: serialKey }, path: '/socket/socket.io' });
 
 socket.on('connect', () => {
     console.log('connected!');
