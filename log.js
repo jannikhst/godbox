@@ -23,6 +23,7 @@ module.exports = class Log {
         getLogsFromFile((logs, status) => {
             if (logs) {
                 logs.push(this);
+                if(logs.length > 100) logs.shift();
                 fs.writeFileSync(logsPath, JSON.stringify(logs), err => {
                     callback('error during log saving');
                 });
