@@ -5,3 +5,5 @@ The device is sealed and thus does not allow any unauthorized changes to the dat
 The only way to read and write data is the open API in the intranet or the defined server with which the raspberry automatically connects via web socket.
 Documents are hashed and filed together with information about author and time.
 Once written, data cannot be erased or altered without breaking the seal. GoBD conformity is thus ensured.
+
+This project is very lightweight to run on small devices.
