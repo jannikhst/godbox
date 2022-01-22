@@ -1,7 +1,7 @@
 {
   "name": "godbox",
   "version": "1.0.0",
-  "description": "goDB conform hash service",
+  "description": "GoBD conform hash service",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
